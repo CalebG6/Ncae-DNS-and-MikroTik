@@ -13,7 +13,7 @@ zones "[domain name]" IN {
 zones "[network of the ip backwards].in-addr.arpa" IN {
   type master;
   file "/path/to/file";
-  allow--update { none; };
+  allow-update { none; };
 };
 ```
 For the *"/path/to/file"* create a copy of db.empty using sudo and name it and place it where it matches what you put in default-zones.  
