@@ -20,7 +20,7 @@ For the *"/path/to/file"* create a copy of db.empty using sudo and name it and p
 For forward lookup do
 ```
 @  IN  SOA  [domain name]  root (
-the only thing you need to edit in here is incrementing the **Serial** by 1)
+the only thing you need to edit in here is incrementing the Serial by 1)
 ;
 @  IN  NS  [name of the DNS server machine]
 www  IN A    [ip address of the website]
@@ -29,7 +29,7 @@ www  IN A    [ip address of the website]
 For reverse lookup  
 ```
 @  IN  SOA  [domain name].  root.[domain name]. (
-the only thing you need to edit in here is incrementing the **Serial** by 1)
+the only thing you need to edit in here is incrementing the Serial by 1)
 ;
 @  IN  NS  [name of the DNS server machine].
 [unique identifier of ip backwards]  IN PTR    [beginning of domain/whatever you put in forward that matches to this ip]
@@ -46,10 +46,9 @@ acl "trusted" {
 
 options{
 // There will be some default stuff here don't touch it
-  dnssec-enable yes;
-  dnssec-validation auto;
+  dnssec-validation auto; //might already be listed
 
-  listen-on-v6 { any; };
+  listen-on-v6 { any; }; //might already be listed
 
   recursion yes;
   allow-recursion { "trusted"; };
@@ -57,8 +56,7 @@ options{
   allow-query-cahce { "trusted"; };
 
   query-source address * port 53;
-  query-cache-size 0;
-  additional-from-cache no;
+  
 };
 ```
 In practice this may not help that much because the red team may just be using the scoring routing IP but it's still a good precaution
