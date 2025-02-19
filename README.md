@@ -2,10 +2,6 @@
 
 ## DNS
 ### Original Setup
-<ins>This command can be used at any time to check your config files</ins>  
-```
-named-checkconf
-```
 First in */etc/named/named.conf.default-zones* add for each domain name and each network IP  
 ```
 zones "[domain name]" IN {
@@ -41,6 +37,14 @@ the only thing you need to edit in here is incrementing the Serial by 1)
 ```
 **DO NOT FORGET THE PERIODS WHERE THEY ARE**  
 Multiple zones for reverse lookup can go in the same file  
+In */etc/resolv.conf* add your DNS server above the one that's already there if there is one  
+```
+nameserver [DNS IP address]
+```
+Restart the service using  
+```
+sudo systemctl restart named
+```
 ### DNS Hardening
 In order to protect from DoS attacks and to protect the webservers from unknown IPs we'll add the following to */etc/bind/named.conf.options"*  
 ```
@@ -64,3 +68,21 @@ options{
 };
 ```
 In practice this may not help that much because the red team may just be using the scoring routing IP but it's still a good precaution
+### Debugging
+<ins>This command can be used at any time to check your config files</ins>  
+```
+named-checkconf
+```
+If you're restarting services and the nameserver disappears from resolv.conf check  
+```
+ls -l /etc/resolv.conf
+```
+And if it looks like  
+```
+lrwxrwxrwx 1 root root 39 Jan  1 10:10 /etc/resolv.conf -> ../run/systemd/resolve/stub-resolv.conf
+```
+Then what you're going to do is:
+1. Copy the contents of the file
+2. Delete the file using ``` sudo rm /etc/resolv.conf ```
+3. Then add your own with nano and paste the contents back in
+4. (Optional) you can chattr +i the file
