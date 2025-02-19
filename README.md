@@ -2,7 +2,7 @@
 
 ## DNS
 ### Original Setup
-<ins>underline</ins> This command can be used at any time to check your config files  
+<ins>This command can be used at any time to check your config files</ins>  
 ```
 named-checkconf
 ```
