@@ -2,6 +2,10 @@
 
 ## DNS
 ### Original Setup
+<ins>underline</ins> This command can be used at any time to check your config files  
+```
+named-checkconf
+```
 First in */etc/named/named.conf.default-zones* add for each domain name and each network IP  
 ```
 zones "[domain name]" IN {
@@ -55,7 +59,7 @@ options{
   allow-query { "trusted"; };
   allow-query-cahce { "trusted"; };
 
-  query-source address * port 53;
+  query-source address * port 53; //newer version of bind do not need port 53
   
 };
 ```
