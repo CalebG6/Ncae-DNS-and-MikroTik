@@ -23,6 +23,7 @@ For forward lookup do
 the only thing you need to edit in here is incrementing the Serial by 1)
 ;
 @  IN  NS  [name of the DNS server machine]
+[name of DNS server machine]  IN  A [DNS IP] ; this line must be here espcially if webserver is not the DNS server
 www  IN A    [ip address of the website]
 [add whatever other things you need here following that format]
 ```
@@ -32,7 +33,8 @@ For reverse lookup
 the only thing you need to edit in here is incrementing the Serial by 1)
 ;
 @  IN  NS  [name of the DNS server machine].
-[unique identifier of ip backwards]  IN PTR    [beginning of domain/whatever you put in forward that matches to this ip]
+[unique indentifier of ip backwards of DNS server]  IN PTR  [DNS hostname.domain name of the website] ; this line must also be here if DNS server != webserver
+[unique identifier of ip backwards of webserver]  IN PTR    [beginning of domain/whatever you put in forward that matches to this ip]
 [add whatever other things you need here following that format]
 ```
 **DO NOT FORGET THE PERIODS WHERE THEY ARE**  
