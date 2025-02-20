@@ -86,3 +86,29 @@ Then what you're going to do is:
 2. Delete the file using ``` sudo rm /etc/resolv.conf ```
 3. Then add your own with nano and paste the contents back in
 4. (Optional) you can chattr +i the file
+
+## MikroTik
+### IP Setup
+If the router has no addresses run ``` /interfaces print ``` to see what interfaces to use  
+Then for both interfaces run  
+```
+/ip address add address=[ip address] interface=[one of your interfaces]
+```
+### Port Forwarding
+In the search bar of a broswer type in the router's external ip with port 8080 ```[ip address]:8080```
+In this homepage scroll down to the interior address and turn on NAT to allow port forwarding then create the port forwarding rules for your services  
+Most services use tcp however DNS uses <ins>udp</ins>. Make sure you know what the services uses when formatting.  
+### DNS Setup
+In the homepage in the external portion you can enter in your DNS server
+### Hardening
+Some commands to harden the router/network  
+Allow Established & Related Connections  
+```
+/ip firewall filter add chain=forward connection-state=established,related action=accept comment="Allow Established & Related Connections"
+```
+Block exterior addresses that are spoofing a private ip
+```
+/ip firewall filter add chain=input src-address=10.0.0.0/8 in-interface=WAN action=drop comment="Block Bogus Private IPs from WAN"
+/ip firewall filter add chain=input src-address=172.16.0.0/12 in-interface=WAN action=drop comment="Block Bogus Private IPs from WAN"
+/ip firewall filter add chain=input src-address=192.168.0.0/16 in-interface=WAN action=drop comment="Block Bogus Private IPs from WAN"
+```
