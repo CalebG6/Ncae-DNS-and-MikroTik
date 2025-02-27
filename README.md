@@ -88,6 +88,11 @@ Then what you're going to do is:
 2. Delete the file using ``` sudo rm /etc/resolv.conf ```
 3. Then add your own with nano and paste the contents back in
 4. (Optional) you can chattr +i the file
+### DNS Reinstallation (Rocky 8)   
+Use this if Red team deletes service/configs
+```
+sudo dnf remove bind bind-utils -y && sudo dnf autoremove -y && sudo dnf install bind bind-utils -y
+```
 
 ## MikroTik
 ### IP Setup
