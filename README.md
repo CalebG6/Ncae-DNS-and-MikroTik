@@ -2,7 +2,7 @@
 
 ## DNS
 ### Original Setup
-**In Rocky Linux all files will be in */var/named* rather than */etc/named***
+**In Rocky Linux all files will be in */var/named* rather than */etc/named***  
 First in */etc/named/named.conf.default-zones* add for each domain name and each network IP  
 ```
 zones "[domain name]" IN {
