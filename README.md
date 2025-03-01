@@ -50,6 +50,10 @@ sudo systemctl restart named
 ```
 ### DNS Hardening
 Install bind-chroot 
+```
+sudo dnf install bind-chroot
+```
+If this command is ran all config files will move inside the chroot folder in named  
 In order to protect from DoS attacks and to protect the webservers from unknown IPs we'll add the following to */etc/bind/named.conf.options"*  
 ```
 acl "trusted" {
