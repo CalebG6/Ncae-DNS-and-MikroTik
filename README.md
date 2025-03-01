@@ -2,6 +2,7 @@
 
 ## DNS
 ### Original Setup
+**In Rocky Linux all files will be in */var/named* rather than */etc/named***
 First in */etc/named/named.conf.default-zones* add for each domain name and each network IP  
 ```
 zones "[domain name]" IN {
@@ -48,6 +49,7 @@ Restart the service using
 sudo systemctl restart named
 ```
 ### DNS Hardening
+Install bind-chroot 
 In order to protect from DoS attacks and to protect the webservers from unknown IPs we'll add the following to */etc/bind/named.conf.options"*  
 ```
 acl "trusted" {
