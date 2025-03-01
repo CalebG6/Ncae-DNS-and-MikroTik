@@ -101,6 +101,7 @@ If SERFAIL permissions may be bad (Rcoky 8)
 sudo chown named:named /path/to/lookup/config
 sudo chmod 644 /path/to/lookup/config
 ```
+Rocky 8 configuration vidoes https://www.youtube.com/watch?v=FeZjRF-aVlc&list=PL291a0KYQZSK6E_1j9xkkieCOi_867pyc  
 ### DNS Reinstallation (Rocky 8)   
 Use this if Red team deletes service/configs
 ```
