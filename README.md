@@ -98,7 +98,7 @@ Then what you're going to do is:
 ### DNS Reinstallation (Rocky 8)   
 Use this if Red team deletes service/configs
 ```
-sudo dnf remove bind bind-utils -y && sudo dnf autoremove -y && sudo dnf install bind bind-utils -y
+sudo dnf remove bind bind-utils -y && sudo dnf autoremove -y && sudo dnf install bind bind-utils bind-chroot -y
 ```
 
 ## MikroTik
