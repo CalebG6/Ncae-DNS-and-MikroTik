@@ -94,7 +94,13 @@ Then what you're going to do is:
 1. Copy the contents of the file
 2. Delete the file using ``` sudo rm /etc/resolv.conf ```
 3. Then add your own with nano and paste the contents back in
-4. (Optional) you can chattr +i the file
+4. (Optional) you can chattr +i the file  
+
+If SERFAIL permissions may be bad (Rcoky 8)
+```
+sudo chown named:named /path/to/lookup/config
+sudo chmod 644 /path/to/lookup/config
+```
 ### DNS Reinstallation (Rocky 8)   
 Use this if Red team deletes service/configs
 ```
