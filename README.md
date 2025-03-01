@@ -116,6 +116,12 @@ Most services use tcp however DNS uses <ins>udp</ins>. Make sure you know what t
 In the homepage in the external portion you can enter in your DNS server
 ### Hardening
 Some commands to harden the router/network  
+Creating a new admin user (remove any other users that were already there)  
+```
+/user add name=<new_admin_username> password=<new_admin_password> group=full
+/user disable admin
+/user print
+```
 Allow Established & Related Connections  
 ```
 /ip firewall filter add chain=forward connection-state=established,related action=accept comment="Allow Established & Related Connections"
@@ -125,4 +131,17 @@ Block exterior addresses that are spoofing a private ip
 /ip firewall filter add chain=input src-address=10.0.0.0/8 in-interface=WAN action=drop comment="Block Bogus Private IPs from WAN"
 /ip firewall filter add chain=input src-address=172.16.0.0/12 in-interface=WAN action=drop comment="Block Bogus Private IPs from WAN"
 /ip firewall filter add chain=input src-address=192.168.0.0/16 in-interface=WAN action=drop comment="Block Bogus Private IPs from WAN"
+```
+Port forwaring CLI  
+```
+/ip firewall filter add chain=forward dst-address=<LAN_IP> protocol=<tcp/udp> dst-port=<INT_PORT> action=accept
+```
+dst-address should either be the router or the machine but both need to be entered  
+Only allow internal network to access web console  
+```
+/ip firewall filter add chain=input protocol=tcp dst-port=8080 src-address=!192.168.<team#>.0/24 action=drop
+```
+Allow external ping  
+```
+/ip firewall filter add chain=input protocol=icmp action=accept
 ```
