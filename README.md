@@ -152,3 +152,12 @@ Allow external ping
 ```
 /ip firewall filter add chain=input protocol=icmp action=accept
 ```
+More firewall rules to possibly add to drop all direct access to ports that don't need port forwarding  
+```
+/ip firewall filter
+add chain=input protocol=tcp dst-port=80 action=accept comment="Allow HTTP"
+add chain=input protocol=tcp dst-port=443 action=accept comment="Allow HTTPS"
+add chain=input protocol=tcp dst-port=53 action=accept comment="Allow DNS TCP"
+add chain=input protocol=udp dst-port=53 action=accept comment="Allow DNS UDP"
+add chain=input in-interface=WAN_INTERFACE action=drop comment="Drop all other external traffic"
+```
