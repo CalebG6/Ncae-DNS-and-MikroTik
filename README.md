@@ -53,7 +53,7 @@ Install bind-chroot
 ```
 sudo dnf install bind-chroot
 ```
-If this command is ran all config files will move inside the chroot folder in named  
+If this command is ran after bind is already installed must move all files into the chroot files (will not be used during the competition)  
 ^^ only on Rocky and CentOS  
 In order to protect from DoS attacks and to protect the webservers from unknown IPs we'll add the following to */etc/bind/named.conf.options"*  
 ```
@@ -105,7 +105,7 @@ Rocky 8 configuration vidoes https://www.youtube.com/watch?v=FeZjRF-aVlc&list=PL
 ### DNS Reinstallation (Rocky 8)   
 Use this if Red team deletes service/configs
 ```
-sudo dnf remove bind bind-utils -y && sudo dnf autoremove -y && sudo dnf install bind bind-utils bind-chroot -y
+sudo dnf remove bind bind-utils -y && sudo dnf autoremove -y && sudo dnf install bind bind-utils -y
 ```
 
 ## MikroTik
