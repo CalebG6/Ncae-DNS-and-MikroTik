@@ -18,7 +18,7 @@ zones "[network of the ip backwards].in-addr.arpa" IN {
   allow-update { none; };
 };
 ```
-For the *"/path/to/file"* create a copy of db.empty using sudo and name it and place it where it matches what you put in default-zones.  
+For the *"/path/to/file"* create a copy of db.empty/named.empty using sudo and name it and place it where it matches what you put in default-zones.  
 For forward lookup do
 ```
 @  IN  SOA  [domain name]  root (
