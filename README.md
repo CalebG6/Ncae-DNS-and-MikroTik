@@ -2,7 +2,8 @@
 
 ## DNS
 ### Original Setup
-**In Rocky linux add the zones to /etc/named.conf and add the zone files to /var/named**
+**In Rocky linux add the zones to /etc/named.conf and add the zone files to /var/named**  
+On Rocky as well add your ip to ```listen-on port 53 { 127.0.0.1; [add your server ip address]; };``` in named.conf as well as changing listen-on-v6 to { none; };  
 First in */etc/named/named.conf.default-zones* add for each domain name and each network IP  
 ```
 zones "[domain name]" IN {
@@ -39,6 +40,32 @@ the only thing you need to edit in here is incrementing the Serial by 1)
 [add whatever other things you need here following that format]
 ```
 **DO NOT FORGET THE PERIODS WHERE THEY ARE**  
+For Rocky * machines the file will look different, it will look like  
+```
+$TTL 1D
+@       IN      SOA     @ root.localhost.  (
+                                0       ; serial
+                                1D      ; refresh
+                                1H      ; retry
+                                1W      ; expire
+                                3H )    ; minimum TTL
+        NS      @
+        A       0.0.0.0
+        AAAA    ::0
+```
+**Change it so that it looks like the above files otherwise you will run into errors**. The serial number follows the same rules.  
+Can use this to copy and paste into the file to get correct format (everything after ; is a comment)  
+```
+$TTL    86400
+@       IN      SOA     [domain name here]. root.[domain name here]. (
+                              0         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                          86400 )       ; Negative Cache TTL
+;
+@       IN      NS      [hostname here].
+```
 Multiple zones for reverse lookup can go in the same file  
 In */etc/resolv.conf* add your DNS server above the one that's already there if there is one  
 ```
@@ -99,7 +126,8 @@ Then what you're going to do is:
 If SERFAIL permissions may be bad (Rcoky 8)
 ```
 sudo chown named:named /path/to/lookup/config
-sudo chmod 644 /path/to/lookup/config
+sudo chmod 644 /etc/named.conf
+sudo chmod 660 /var/named/*
 ```
 Rocky 8 configuration vidoes https://www.youtube.com/watch?v=FeZjRF-aVlc&list=PL291a0KYQZSK6E_1j9xkkieCOi_867pyc  
 ### DNS Reinstallation (Rocky 8)   
