@@ -4,7 +4,7 @@
 ### Original Setup
 **In Rocky linux add the zones to /etc/named.conf and add the zone files to /var/named**  
 On Rocky as well add your ip to ```listen-on port 53 { 127.0.0.1; [add your server ip address]; };``` in named.conf as well as changing listen-on-v6 to { none; };  
-First in */etc/named/named.conf.default-zones* add for each domain name and each network IP  
+First in */etc/named/named.conf.default-zones* add for each domain name and each network IP  */etc/named.conf* on Rocky 8  
 ```
 zones "[domain name]" IN {
   type master;
