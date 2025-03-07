@@ -156,6 +156,7 @@ Creating a new admin user (remove any other users that were already there)
 /user add name=<new_admin_username> password=<new_admin_password> group=full
 /user disable admin
 /user print
+/quit
 ```
 Allow Established & Related Connections  
 ```
