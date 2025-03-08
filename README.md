@@ -208,9 +208,9 @@ Stop excessive pings to prevent ping flooding (may need to adjust rate depending
 **For all the forward drop commands make sure ports 53,80, and 443 can go out for downloads and scoring**  
 ```
 /ip firewall filter
-add chain=input protocol=tcp dst-port=!53,80,8080 action=drop log=yes log-prefix="DROPPED INPUT TCP"
+add chain=input protocol=tcp dst-port=!53,80,8080,5432 action=drop log=yes log-prefix="DROPPED INPUT TCP"
 add chain=input protocol=udp dst-port=!53 action=drop log=yes log-prefix="DROPPED INPUT UDP"
 /ip firewall filter
-add chain=forward protocol=tcp dst-port=!53,80,443 action=drop log=yes log-prefix="DROPPED FORWARD TCP"
+add chain=forward protocol=tcp dst-port=!53,80,443,5432 action=drop log=yes log-prefix="DROPPED FORWARD TCP"
 add chain=forward protocol=udp dst-port=!53 action=drop log=yes log-prefix="DROPPED FORWARD UDP"
 ```
