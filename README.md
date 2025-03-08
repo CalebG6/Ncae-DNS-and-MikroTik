@@ -201,3 +201,7 @@ add chain=input protocol=tcp dst-port=53 action=accept comment="Allow DNS TCP"
 add chain=input protocol=udp dst-port=53 action=accept comment="Allow DNS UDP"
 add chain=input in-interface=WAN_INTERFACE action=drop comment="Drop all other external traffic"
 ```
+Stop excessive pings to prevent ping flooding (may need to adjust rate depending on scoring)  
+```
+/ip firewall filter add chain=input protocol=icmp limit=5,5 action=accept comment="Limit ICMP to prevent abuse"
+```
