@@ -181,7 +181,7 @@ Block exterior addresses that are spoofing a private ip
 ```
 Port forwaring CLI  
 ```
-/ip firewall nat add chain=forward dst-address=<LAN_IP> protocol=<tcp/udp> dst-port=<INT_PORT> action=accept
+/ip firewall nat add chain=dstnat protocol=<tcp/udp> dst-port=PORT_IN action=dst-nat to-addresses=LOCAL_IP to-ports=PORT_OUT
 ```
 dst-address should either be the router or the machine but both need to be entered  
 Only allow internal network to access web console  
