@@ -75,13 +75,7 @@ Restart the service using
 ```
 sudo systemctl restart named
 ```
-### DNS Hardening
-Install bind-chroot 
-```
-sudo dnf install bind-chroot
-```
-If this command is ran after bind is already installed must move all files into the chroot files (will not be used during the competition)  
-^^ only on Rocky and CentOS  
+### DNS Hardening   
 In order to protect from DoS attacks and to protect the webservers from unknown IPs we'll add the following to */etc/bind/named.conf.options"*  
 ```
 acl "trusted" {
@@ -103,7 +97,19 @@ options{
   
 };
 ```
-In practice this may not help that much because the red team may just be using the scoring routing IP but it's still a good precaution
+In practice this may not help that much because the red team may just be using the scoring routing IP but it's still a good precaution  
+Change the named.root.key and named.rfc1912.zones file permission 
+```
+sudo chmod 040 /etc/named.root.key && sudo chmod 040 /etc/named.rfc1912.zones
+```
+Create backup of important  
+```
+sudo tar -zcvf /path/to/backup_name /var/named /etc/named.conf /etc/named.root.key /etc/named.rfc1912.zones
+```
+Get files from backup (see debugging for SELinux error)  
+```
+sudo tar -xzvf /path/to/backup_name -C /
+```
 ### Debugging
 <ins>This command can be used at any time to check your config files</ins>  
 ```
