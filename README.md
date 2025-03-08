@@ -125,9 +125,10 @@ Then what you're going to do is:
 
 If SERFAIL permissions may be bad (Rcoky 8)
 ```
-sudo chown named:named /path/to/lookup/config
-sudo chmod 644 /etc/named.conf
-sudo chmod 660 /var/named/*
+sudo chown -R named:named /var/named
+sudo chmod -R 750 /var/named
+sudo chown named:named /etc/named.conf
+sudo chmod 640 /etc/named.conf
 ```
 Rocky 8 configuration vidoes https://www.youtube.com/watch?v=FeZjRF-aVlc&list=PL291a0KYQZSK6E_1j9xkkieCOi_867pyc  
 ### DNS Reinstallation (Rocky 8)   
