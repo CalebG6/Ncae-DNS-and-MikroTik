@@ -104,7 +104,7 @@ sudo chmod 040 /etc/named.root.key && sudo chmod 040 /etc/named.rfc1912.zones
 ```
 Create backup of important  
 ```
-sudo tar -zcvf /path/to/backup_name /var/named /etc/named.conf /etc/named.root.key /etc/named.rfc1912.zones
+sudo tar -zcvf /path/to/backup_name /var/named /etc/named.conf /etc/named.root.key /etc/named.rfc1912.zones /etc/resolv.conf
 ```
 Get files from backup (see debugging for SELinux error)  
 ```
