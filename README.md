@@ -205,3 +205,4 @@ Stop excessive pings to prevent ping flooding (may need to adjust rate depending
 ```
 /ip firewall filter add chain=input protocol=icmp limit=5,5 action=accept comment="Limit ICMP to prevent abuse"
 ```
+**For all the forward drop commands make sure ports 53,80, and 443 can go out for downloads and scoring**  
