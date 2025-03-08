@@ -136,7 +136,10 @@ sudo chmod -R 750 /var/named
 sudo chown named:named /etc/named.conf
 sudo chmod 640 /etc/named.conf
 ```
-If journalctl -xe says that SELinux is having trouble with bind run this command ```restorecon -Rv /var/named```  
+If journalctl -xe says that SELinux is having trouble with bind run this command 
+```
+restorecon -Rv /var/named
+```  
 Rocky 8 configuration vidoes https://www.youtube.com/watch?v=FeZjRF-aVlc&list=PL291a0KYQZSK6E_1j9xkkieCOi_867pyc  
 ### DNS Reinstallation (Rocky 8)   
 Use this if Red team deletes service/configs
